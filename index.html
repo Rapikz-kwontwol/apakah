@@ -10,12 +10,16 @@
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-8">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Ketik pertanyaan apakah</h1>
     <div class="question-box w-full max-w-md bg-white shadow-md rounded-lg p-6 mb-6">
-        <textarea id="questionInput" placeholder="Ketik pertanyaan lu di sini..." class="w-full h-24 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+        <textarea id="questionInput" placeholder="Ketik pertanyaan kamu di sini..." class="w-full h-24 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
     </div>
     <button onclick="generateAnswer()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Dapatkan Jawaban</button>
     <div class="answer w-full max-w-md bg-white shadow-md rounded-lg p-6 mt-6 border border-gray-300 text-lg">
         <pre id="answerDisplay"></pre>
     </div>
+
+    <a href="https://github.com/Rapikz-kwontwol/apakah" style="margin-top: 20px;">
+        <img title="Author" src="https://img.shields.io/badge/GITHUB-gray.svg?style=for-the-badge&logo=github" alt="GitHub">
+    </a>
 
     <script>
         function generateAnswer() {
