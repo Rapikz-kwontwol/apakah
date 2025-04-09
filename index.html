@@ -22,12 +22,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Tambahkan style ini untuk kotak jawaban */
-        .answer {
-            overflow-wrap: break-word; /* Mencegah kata panjang keluar kotak */
-            white-space: pre-wrap; /* Mempertahankan format baris dan spasi */
-        }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-8">
@@ -42,9 +36,7 @@
         Dapatkan Jawaban
         <span id="loadingSpinner" class="loading-spinner"></span>
     </button>
-    <div class="answer w-full max-w-md bg-white shadow-md rounded-lg p-6 mt-6 border border-gray-300 text-lg">
-        <pre id="answerDisplay"></pre>
-    </div>
+    <pre id="answerDisplay" class="mt-6 text-lg"></pre>
 
     <a href="https://github.com/Rapikz-kwontwol/apakah" style="margin-top: 20px;">
         <img title="Author" src="https://img.shields.io/badge/GITHUB-gray.svg?style=for-the-badge&logo=github" alt="GitHub">
