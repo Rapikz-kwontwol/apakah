@@ -6,6 +6,23 @@
     <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/0d/71/2a/0d712a0b6805c0b44386339048bdfce5.jpg?format=png&name=900x900">
     <title>Apakah?</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 2s linear infinite;
+            display: none; /* Awalnya disembunyikan */
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-8">
     <p align="center">
@@ -15,7 +32,10 @@
     <div class="question-box w-full max-w-md bg-white shadow-md rounded-lg p-6 mb-6">
         <textarea id="questionInput" placeholder="Ketik pertanyaan kamu di sini..." class="w-full h-24 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
     </div>
-    <button onclick="generateAnswer()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Dapatkan Jawaban</button>
+    <button onclick="generateAnswer()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+        Dapatkan Jawaban
+        <span id="loadingSpinner" class="loading-spinner"></span>
+    </button>
     <div class="answer w-full max-w-md bg-white shadow-md rounded-lg p-6 mt-6 border border-gray-300 text-lg">
         <pre id="answerDisplay"></pre>
     </div>
@@ -27,16 +47,34 @@
     <script>
         function generateAnswer() {
             const answers = ['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin'];
-            const question = document.getElementById('questionInput').value;
+            const questionInput = document.getElementById('questionInput');
+            const question = questionInput.value;
+            const answerDisplay = document.getElementById('answerDisplay');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const getAnswerButton = document.querySelector('button'); // Ambil tombol
 
             if (question.trim() === '') {
                 alert('Silakan ketik pertanyaan terlebih dahulu!');
                 return;
             }
 
-            const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-            const formattedAnswer = `Pertanyaan: ${question}\nJawaban: ${randomAnswer}`;
-            document.getElementById('answerDisplay').innerText = formattedAnswer;
+            // Tampilkan loading spinner dan nonaktifkan tombol
+            loadingSpinner.style.display = 'inline-block';
+            getAnswerButton.disabled = true;
+            getAnswerButton.innerText = 'Memproses...'; // Ubah teks tombol
+
+            // Simulate a delay (you might replace this with an actual API call)
+            setTimeout(() => {
+                const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+                const formattedAnswer = `Pertanyaan: ${question}\nJawaban: ${randomAnswer}`;
+                answerDisplay.innerText = formattedAnswer;
+
+                // Sembunyikan loading spinner dan aktifkan kembali tombol
+                loadingSpinner.style.display = 'none';
+                getAnswerButton.disabled = false;
+                getAnswerButton.innerText = 'Dapatkan Jawaban'; // Kembalikan teks tombol
+                questionInput.value = ''; // Bersihkan input setelah mendapatkan jawaban
+            }, 1500); // Misalnya, loading selama 1.5 detik
         }
     </script>
 </body>
