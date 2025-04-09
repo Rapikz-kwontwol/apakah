@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apakah?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Ketik pertanyaan apakah</h1>
+    <div class="question-box w-full max-w-md bg-white shadow-md rounded-lg p-6 mb-6">
+        <textarea id="questionInput" placeholder="Ketik pertanyaan lu di sini..." class="w-full h-24 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+    </div>
+    <button onclick="generateAnswer()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Dapatkan Jawaban</button>
+    <div class="answer w-full max-w-md bg-white shadow-md rounded-lg p-6 mt-6 border border-gray-300 text-lg">
+        <pre id="answerDisplay"></pre>
+    </div>
+
+    <script>
+        function generateAnswer() {
+            const answers = ['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin'];
+            const question = document.getElementById('questionInput').value;
+
+            if (question.trim() === '') {
+                alert('Silakan ketik pertanyaan terlebih dahulu!');
+                return;
+            }
+
+            const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+            const formattedAnswer = `Pertanyaan: ${question}\nJawaban: ${randomAnswer}`;
+            document.getElementById('answerDisplay').innerText = formattedAnswer;
+        }
+    </script>
+</body>
+</html>
