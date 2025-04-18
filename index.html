@@ -30,7 +30,8 @@
 
         /* Tambahkan gaya overflow ke kontainer jawaban */
         #answerContainer {
-            overflow: auto; /* Tambahkan ini */
+            overflow: auto; /* Ini akan menambahkan scroll bar jika konten meluap */
+            max-height: 300px; /* Anda bisa atur tinggi maksimum sesuai keinginan */
         }
     </style>
 </head>
@@ -90,7 +91,7 @@
             // Simulate a delay (you might replace this with an actual API call)
             setTimeout(() => {
                 const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-                const formattedAnswer = `${randomAnswer}`;
+                const formattedAnswer = `${randomAnswer}\n\nIni adalah baris tambahan untuk melihat apakah scroll berfungsi.\nDan ini baris yang lebih panjang lagi untuk memastikan semuanya berjalan dengan baik.\nSerta satu baris lagi yang super panjang agar benar-benar terlihat efek scrollnya. Ini dia teks yang sangat panjang sekali dan terus berlanjut tanpa ada akhirnya seolah-olah seperti sebuah sungai yang mengalir deras tak pernah berhenti sampai ke muara samudra yang luas dan tak terhingga. Begitulah panjangnya teks ini sehingga kita bisa melihat bagaimana kotak akan merespons ketika kontennya terlalu banyak dan melebihi batas visual yang ditentukan.';
                 answerDisplay.innerText = formattedAnswer;
 
                 // Sembunyikan loading spinner dan aktifkan kembali tombol
