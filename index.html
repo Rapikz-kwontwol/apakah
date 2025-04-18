@@ -42,6 +42,8 @@
         </button>
     </div>
     <div id="answerContainer" class="mt-6 w-full max-w-md bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">Pertanyaan Anda:</h2>
+        <pre id="questionDisplay" class="text-lg mb-4"></pre>
         <h2 class="text-xl font-semibold text-gray-800 mb-2">Jawaban:</h2>
         <pre id="answerDisplay" class="text-lg"></pre>
     </div>
@@ -56,6 +58,7 @@
             const questionInput = document.getElementById('questionInput');
             const question = questionInput.value;
             const answerDisplay = document.getElementById('answerDisplay');
+            const questionDisplay = document.getElementById('questionDisplay');
             const loadingSpinner = document.getElementById('loadingSpinner');
             const getAnswerButton = document.querySelector('button'); // Ambil tombol
 
@@ -69,6 +72,10 @@
             getAnswerButton.disabled = true;
             getAnswerButton.innerText = 'Ntar...'; // Ubah teks tombol
             answerDisplay.innerText = ''; // Kosongkan jawaban sebelumnya
+            questionDisplay.innerText = ''; // Kosongkan pertanyaan sebelumnya
+
+            // Tampilkan pertanyaan
+            questionDisplay.innerText = question;
 
             // Simulate a delay (you might replace this with an actual API call)
             setTimeout(() => {
@@ -80,7 +87,7 @@
                 loadingSpinner.style.display = 'none';
                 getAnswerButton.disabled = false;
                 getAnswerButton.innerText = 'Dapatkan Jawaban'; // Kembalikan teks tombol
-                questionInput.value = ''; // Bersihkan input setelah mendapatkan jawaban
+                // questionInput.value = ''; // Biarkan input tetap ada
             }, 1500); // Misalnya, loading selama 1.5 detik
         }
     </script>
