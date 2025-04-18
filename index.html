@@ -27,6 +27,11 @@
         #answerDisplay, #questionDisplay {
             word-wrap: break-word;
         }
+
+        /* Tambahkan gaya overflow ke kontainer jawaban */
+        #answerContainer {
+            overflow: auto; /* Tambahkan ini */
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-8">
@@ -59,7 +64,7 @@
 
     <script>
         function generateAnswer() {
-            const answers = ['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin'];
+            const answers = ['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin', 'Ini adalah jawaban yang sangat panjang sekali untuk menguji apakah kotak jawaban bisa menampung banyak teks tanpa keluar dari batasnya. Kita akan terus menambahkan teks ini sampai memenuhi beberapa baris dan melihat apakah scroll bar muncul atau teksnya malah keluar dari kotak. Ini dia kelanjutannya... dan terus berlanjut... tanpa henti...'];
             const questionInput = document.getElementById('questionInput');
             const question = questionInput.value;
             const answerDisplay = document.getElementById('answerDisplay');
