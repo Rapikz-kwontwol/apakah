@@ -41,7 +41,10 @@
             Refresh
         </button>
     </div>
-    <pre id="answerDisplay" class="mt-6 text-lg"></pre>
+    <div id="answerContainer" class="mt-6 w-full max-w-md bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">Jawaban:</h2>
+        <pre id="answerDisplay" class="text-lg"></pre>
+    </div>
 
     <a href="https://github.com/Rapikz-kwontwol/apakah" style="margin-top: 20px;">
         <img title="Author" src="https://img.shields.io/badge/GITHUB-gray.svg?style=for-the-badge&logo=github" alt="GitHub">
@@ -65,11 +68,12 @@
             loadingSpinner.style.display = 'inline-block';
             getAnswerButton.disabled = true;
             getAnswerButton.innerText = 'Ntar...'; // Ubah teks tombol
+            answerDisplay.innerText = ''; // Kosongkan jawaban sebelumnya
 
             // Simulate a delay (you might replace this with an actual API call)
             setTimeout(() => {
                 const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-                const formattedAnswer = `Pertanyaan: ${question}\nJawaban: ${randomAnswer}`;
+                const formattedAnswer = `${randomAnswer}`;
                 answerDisplay.innerText = formattedAnswer;
 
                 // Sembunyikan loading spinner dan aktifkan kembali tombol
