@@ -22,17 +22,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Gaya ini sudah ada dan berfungsi untuk memecah kata jika terlalu panjang */
-        #answerDisplay, #questionDisplay {
-            word-wrap: break-word;
-        }
-
-        /* Tambahkan gaya overflow ke kontainer jawaban */
-        #answerContainer {
-            overflow: auto; /* Ini akan menambahkan scroll bar jika konten meluap */
-            max-height: 300px; /* Anda bisa atur tinggi maksimum sesuai keinginan */
-        }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-8">
@@ -53,8 +42,6 @@
         </button>
     </div>
     <div id="answerContainer" class="mt-6 w-full max-w-md bg-white shadow-md rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-2">Pertanyaan Anda:</h2>
-        <pre id="questionDisplay" class="text-lg mb-4"></pre>
         <h2 class="text-xl font-semibold text-gray-800 mb-2">Jawaban:</h2>
         <pre id="answerDisplay" class="text-lg"></pre>
     </div>
@@ -65,11 +52,10 @@
 
     <script>
         function generateAnswer() {
-            const answers = ['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin', 'Ini adalah jawaban yang sangat panjang sekali untuk menguji apakah kotak jawaban bisa menampung banyak teks tanpa keluar dari batasnya. Kita akan terus menambahkan teks ini sampai memenuhi beberapa baris dan melihat apakah scroll bar muncul atau teksnya malah keluar dari kotak. Ini dia kelanjutannya... dan terus berlanjut... tanpa henti...'];
+            const answers = ['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin'];
             const questionInput = document.getElementById('questionInput');
             const question = questionInput.value;
             const answerDisplay = document.getElementById('answerDisplay');
-            const questionDisplay = document.getElementById('questionDisplay');
             const loadingSpinner = document.getElementById('loadingSpinner');
             const getAnswerButton = document.querySelector('button'); // Ambil tombol
 
@@ -83,22 +69,18 @@
             getAnswerButton.disabled = true;
             getAnswerButton.innerText = 'Ntar...'; // Ubah teks tombol
             answerDisplay.innerText = ''; // Kosongkan jawaban sebelumnya
-            questionDisplay.innerText = ''; // Kosongkan pertanyaan sebelumnya
-
-            // Tampilkan pertanyaan
-            questionDisplay.innerText = question;
 
             // Simulate a delay (you might replace this with an actual API call)
             setTimeout(() => {
                 const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-                const formattedAnswer = `${randomAnswer}\n\nIni adalah baris tambahan untuk melihat apakah scroll berfungsi.\nDan ini baris yang lebih panjang lagi untuk memastikan semuanya berjalan dengan baik.\nSerta satu baris lagi yang super panjang agar benar-benar terlihat efek scrollnya. Ini dia teks yang sangat panjang sekali dan terus berlanjut tanpa ada akhirnya seolah-olah seperti sebuah sungai yang mengalir deras tak pernah berhenti sampai ke muara samudra yang luas dan tak terhingga. Begitulah panjangnya teks ini sehingga kita bisa melihat bagaimana kotak akan merespons ketika kontennya terlalu banyak dan melebihi batas visual yang ditentukan.';
+                const formattedAnswer = `${randomAnswer}`;
                 answerDisplay.innerText = formattedAnswer;
 
                 // Sembunyikan loading spinner dan aktifkan kembali tombol
                 loadingSpinner.style.display = 'none';
                 getAnswerButton.disabled = false;
                 getAnswerButton.innerText = 'Dapatkan Jawaban'; // Kembalikan teks tombol
-                // questionInput.value = ''; // Biarkan input tetap ada
+                questionInput.value = ''; // Bersihkan input setelah mendapatkan jawaban
             }, 1500); // Misalnya, loading selama 1.5 detik
         }
     </script>
